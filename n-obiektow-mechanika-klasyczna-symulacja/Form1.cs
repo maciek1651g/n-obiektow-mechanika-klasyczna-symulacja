@@ -19,6 +19,10 @@ namespace n_obiektow_mechanika_klasyczna_symulacja
         {
             InitializeComponent();
             silnikSymulacji = new SilnikSymulacji(pictureBox1);
+            silnikSymulacji.liczbaObiektów = (int)numericUpDown1.Value;
+            silnikSymulacji.deltaT = (double)numericUpDown2.Value;
+            silnikSymulacji.liczbaWatkow = (int)numericUpDown6.Value;
+            silnikSymulacji.Reset();
         }
 
         private void start_stop_button_Click(object sender, EventArgs e)
@@ -39,7 +43,8 @@ namespace n_obiektow_mechanika_klasyczna_symulacja
 
         private void reset_button_Click(object sender, EventArgs e)
         {
-            silnikSymulacji.Reset(120);
+            silnikSymulacji.Stop();
+            silnikSymulacji.Reset();
         }
 
         private void pictureBox1_Paint(object sender, PaintEventArgs e)
@@ -61,6 +66,28 @@ namespace n_obiektow_mechanika_klasyczna_symulacja
             double y = centerY - radius;
 
             graphics.FillEllipse(brush, (float)x, (float)y, 2 * (float)radius, 2 * (float)radius);
+        }
+
+        private void numericUpDown1_ValueChanged(object sender, EventArgs e)
+        {
+            silnikSymulacji.Stop();
+            silnikSymulacji.liczbaObiektów = (int)numericUpDown1.Value;
+            silnikSymulacji.Reset();
+        }
+
+        private void numericUpDown6_ValueChanged(object sender, EventArgs e)
+        {
+            silnikSymulacji.liczbaWatkow = (int)numericUpDown6.Value;
+        }
+
+        private void numericUpDown2_ValueChanged(object sender, EventArgs e)
+        {
+            silnikSymulacji.deltaT = (double)numericUpDown2.Value;
+        }
+
+        private void Form1_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            silnikSymulacji.destroy();
         }
     }
 }

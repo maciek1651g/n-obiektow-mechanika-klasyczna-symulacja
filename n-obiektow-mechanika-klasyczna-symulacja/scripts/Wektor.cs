@@ -23,7 +23,7 @@ namespace n_obiektow_mechanika_klasyczna_symulacja.scripts
             double dl = dlugosc();
             if (dl>0)
             {
-                Wektor w = this / dlugosc();
+                Wektor w = this / dl;
 
                 this.x = w.x;
                 this.y = w.y;
@@ -33,13 +33,6 @@ namespace n_obiektow_mechanika_klasyczna_symulacja.scripts
             }
             
             return new Wektor();
-        }
-
-
-        public static Wektor losuj()
-        {
-            Random r = new Random();
-            return new Wektor(r.NextDouble(), r.NextDouble(), r.NextDouble());
         }
 
         public static double odlegloscDwochPunktow(Wektor a, Wektor b)
