@@ -14,10 +14,18 @@ namespace n_obiektow_mechanika_klasyczna_symulacja.scripts
         public PunktMaterialny[] punktyMaterialne;
         private PictureBox pictureBox;
         private bool czySymulacjaTrwa;
+        public bool czyOdpychanieWlaczone;
+        public bool czyKolizjaWlaczona;
+        public bool czyOgraniczonaPrzestrzen;
         public double deltaT;
+        public int minMasa;
+        public int maxMasa;
         public int liczbaObiektów;
         public int liczbaWatkow;
+        public int opoznienie;
+        public double tlumienie;
         private const double G = 6.67408;
+        private const double K = 100000000;
         public double t;
         private Barrier bariera;
         private Barrier bariera2;
@@ -40,6 +48,10 @@ namespace n_obiektow_mechanika_klasyczna_symulacja.scripts
             {
                 this.t += deltaT;
                 pictureBox.Invalidate();
+                if(opoznienie > 0)
+                {
+                    Thread.Sleep(opoznienie);
+                }
             });
             this.manualResetEvent = new ManualResetEvent(false);
 
@@ -49,13 +61,13 @@ namespace n_obiektow_mechanika_klasyczna_symulacja.scripts
 
             for (int i = 0; i < liczbaObiektów; i++)
             {
-               double masa = random.Next(1000,10000);
+               double masa = random.Next(minMasa,maxMasa);
                double x =  random.NextDouble() * (pictureBox.Width - 10);
                double y = random.NextDouble() * (pictureBox.Height - 10);
-               double vx =  (0.5 - random.NextDouble());
-               double vy = -(0.5 - random.NextDouble());
+                double vx = 0; // (0.5 - random.NextDouble());
+                double vy = 0; // -(0.5 - random.NextDouble());
 
-               punktyMaterialne[i] = new PunktMaterialny(masa, new Wektor(x, y, 0), new Wektor(vx, vy, 0));
+                punktyMaterialne[i] = new PunktMaterialny(masa, new Wektor(x, y, 0), new Wektor(vx, vy, 0), masa / minMasa);
             }
             pictureBox.Invalidate();
 
@@ -108,8 +120,34 @@ namespace n_obiektow_mechanika_klasyczna_symulacja.scripts
                             Wektor r21 = punkt1.r - punkt2.r;
                             double d = r21.dlugosc();
                             r21.normuj();
+                             
+                            Wektor przyciaganie = (- G * (masa / (d * d))) * r21;
+                            Wektor odpychanie = czyOdpychanieWlaczone ? (K / (d * d)) * r21 : new Wektor();
 
-                            punkt1.f = punkt1.f - r21 * G * (masa / (d * d));
+                            punkt1.f = punkt1.f + przyciaganie + odpychanie;
+
+                            if(czyKolizjaWlaczona && d < punkt1.radius + punkt2.radius)
+                            {
+                                Wektor n = -r21;
+                                Wektor vn = n * (n * punkt1.v);
+                                Wektor vs = punkt1.v - vn;
+                                punkt1.v = vs - vn * tlumienie;
+
+                                // double z = d - punkt2.radius;
+                                // punkt1.r = punkt1.r + n * z;
+                            }
+
+                            if(czyOgraniczonaPrzestrzen)
+                            {
+                                if(punkt1.r.x < 0 || punkt1.r.x > pictureBox.Width)
+                                {
+                                    punkt1.v.x = -punkt1.v.x;
+                                }
+                                if (punkt1.r.y < 0 || punkt1.r.y > pictureBox.Height)
+                                {
+                                    punkt1.v.y = -punkt1.v.y;
+                                }
+                            }
                         }
                     }
                 }

@@ -54,6 +54,8 @@
             this.label1 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.label9 = new System.Windows.Forms.Label();
+            this.numericUpDown7 = new System.Windows.Forms.NumericUpDown();
             this.panel1.SuspendLayout();
             this.panel6.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown4)).BeginInit();
@@ -67,6 +69,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown7)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -95,6 +98,7 @@
             this.checkBox3.TabIndex = 7;
             this.checkBox3.Text = "Odpychanie";
             this.checkBox3.UseVisualStyleBackColor = true;
+            this.checkBox3.CheckedChanged += new System.EventHandler(this.checkBox3_CheckedChanged);
             // 
             // checkBox2
             // 
@@ -105,6 +109,7 @@
             this.checkBox2.TabIndex = 6;
             this.checkBox2.Text = "Kolizja";
             this.checkBox2.UseVisualStyleBackColor = true;
+            this.checkBox2.CheckedChanged += new System.EventHandler(this.checkBox2_CheckedChanged);
             // 
             // checkBox1
             // 
@@ -115,24 +120,27 @@
             this.checkBox1.TabIndex = 5;
             this.checkBox1.Text = "Ogranicz przestrzeń";
             this.checkBox1.UseVisualStyleBackColor = true;
+            this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
             // 
             // panel6
             // 
+            this.panel6.Controls.Add(this.numericUpDown7);
+            this.panel6.Controls.Add(this.label9);
             this.panel6.Controls.Add(this.numericUpDown4);
             this.panel6.Controls.Add(this.label6);
             this.panel6.Controls.Add(this.numericUpDown3);
             this.panel6.Controls.Add(this.label5);
             this.panel6.Location = new System.Drawing.Point(34, 132);
             this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(207, 54);
+            this.panel6.Size = new System.Drawing.Size(207, 80);
             this.panel6.TabIndex = 3;
             // 
             // numericUpDown4
             // 
             this.numericUpDown4.Location = new System.Drawing.Point(118, 29);
             this.numericUpDown4.Maximum = new decimal(new int[] {
-            10000,
-            0,
+            276447232,
+            23283,
             0,
             0});
             this.numericUpDown4.Minimum = new decimal(new int[] {
@@ -148,6 +156,7 @@
             0,
             0,
             0});
+            this.numericUpDown4.ValueChanged += new System.EventHandler(this.numericUpDown4_ValueChanged);
             // 
             // label6
             // 
@@ -162,8 +171,8 @@
             // 
             this.numericUpDown3.Location = new System.Drawing.Point(118, 3);
             this.numericUpDown3.Maximum = new decimal(new int[] {
-            1000,
-            0,
+            276447232,
+            23283,
             0,
             0});
             this.numericUpDown3.Minimum = new decimal(new int[] {
@@ -179,6 +188,7 @@
             0,
             0,
             0});
+            this.numericUpDown3.ValueChanged += new System.EventHandler(this.numericUpDown3_ValueChanged);
             // 
             // label5
             // 
@@ -218,7 +228,7 @@
             // 
             // reset_button
             // 
-            this.reset_button.Location = new System.Drawing.Point(166, 218);
+            this.reset_button.Location = new System.Drawing.Point(166, 230);
             this.reset_button.Name = "reset_button";
             this.reset_button.Size = new System.Drawing.Size(75, 23);
             this.reset_button.TabIndex = 4;
@@ -228,7 +238,7 @@
             // 
             // start_stop_button
             // 
-            this.start_stop_button.Location = new System.Drawing.Point(34, 218);
+            this.start_stop_button.Location = new System.Drawing.Point(28, 230);
             this.start_stop_button.Name = "start_stop_button";
             this.start_stop_button.Size = new System.Drawing.Size(75, 23);
             this.start_stop_button.TabIndex = 3;
@@ -253,6 +263,7 @@
             this.numericUpDown5.Name = "numericUpDown5";
             this.numericUpDown5.Size = new System.Drawing.Size(71, 20);
             this.numericUpDown5.TabIndex = 3;
+            this.numericUpDown5.ValueChanged += new System.EventHandler(this.numericUpDown5_ValueChanged);
             // 
             // label7
             // 
@@ -391,6 +402,39 @@
             this.pictureBox1.TabStop = false;
             this.pictureBox1.Paint += new System.Windows.Forms.PaintEventHandler(this.pictureBox1_Paint);
             // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(18, 55);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(91, 13);
+            this.label9.TabIndex = 4;
+            this.label9.Text = "Tłumienie odbicia";
+            // 
+            // numericUpDown7
+            // 
+            this.numericUpDown7.DecimalPlaces = 2;
+            this.numericUpDown7.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
+            this.numericUpDown7.Location = new System.Drawing.Point(118, 53);
+            this.numericUpDown7.Maximum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.numericUpDown7.Name = "numericUpDown7";
+            this.numericUpDown7.Size = new System.Drawing.Size(71, 20);
+            this.numericUpDown7.TabIndex = 5;
+            this.numericUpDown7.Value = new decimal(new int[] {
+            5,
+            0,
+            0,
+            65536});
+            this.numericUpDown7.ValueChanged += new System.EventHandler(this.numericUpDown7_ValueChanged);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -419,6 +463,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
             this.panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown7)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -451,6 +496,8 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.NumericUpDown numericUpDown6;
         private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.NumericUpDown numericUpDown7;
+        private System.Windows.Forms.Label label9;
     }
 }
 

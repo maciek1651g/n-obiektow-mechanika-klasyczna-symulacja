@@ -18,12 +18,12 @@ namespace n_obiektow_mechanika_klasyczna_symulacja.scripts
         public Wektor dr;
         public Wektor dv;
 
-        public PunktMaterialny(double masa, Wektor polozenie, Wektor predkosc){
+        public PunktMaterialny(double masa, Wektor polozenie, Wektor predkosc, double radius = 1){
             m = masa;
             r = polozenie;
             v = predkosc;
             f = new Wektor();
-            radius = masa/1000;
+            this.radius = radius;
         }
 
         public void AktualizujPozycje(double dt)

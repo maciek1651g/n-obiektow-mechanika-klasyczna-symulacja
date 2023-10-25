@@ -22,6 +22,13 @@ namespace n_obiektow_mechanika_klasyczna_symulacja
             silnikSymulacji.liczbaObiektów = (int)numericUpDown1.Value;
             silnikSymulacji.deltaT = (double)numericUpDown2.Value;
             silnikSymulacji.liczbaWatkow = (int)numericUpDown6.Value;
+            silnikSymulacji.czyOdpychanieWlaczone = checkBox3.Checked;
+            silnikSymulacji.czyKolizjaWlaczona = checkBox2.Checked;
+            silnikSymulacji.tlumienie = (double)numericUpDown7.Value;
+            silnikSymulacji.czyOgraniczonaPrzestrzen = checkBox1.Checked;
+            silnikSymulacji.opoznienie = (int)numericUpDown5.Value;
+            silnikSymulacji.minMasa = (int)numericUpDown3.Value;
+            silnikSymulacji.maxMasa = (int)numericUpDown4.Value;
             silnikSymulacji.Reset();
         }
 
@@ -88,6 +95,41 @@ namespace n_obiektow_mechanika_klasyczna_symulacja
         private void Form1_FormClosed(object sender, FormClosedEventArgs e)
         {
             silnikSymulacji.destroy();
+        }
+
+        private void checkBox3_CheckedChanged(object sender, EventArgs e)
+        {
+            silnikSymulacji.czyOdpychanieWlaczone = checkBox3.Checked;
+        }
+
+        private void checkBox2_CheckedChanged(object sender, EventArgs e)
+        {
+            silnikSymulacji.czyKolizjaWlaczona = checkBox2.Checked;
+        }
+
+        private void numericUpDown7_ValueChanged(object sender, EventArgs e)
+        {
+            silnikSymulacji.tlumienie = (double)numericUpDown7.Value;
+        }
+
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+            silnikSymulacji.czyOgraniczonaPrzestrzen = checkBox1.Checked;
+        }
+
+        private void numericUpDown5_ValueChanged(object sender, EventArgs e)
+        {
+            silnikSymulacji.opoznienie = (int)numericUpDown5.Value;
+        }
+
+        private void numericUpDown3_ValueChanged(object sender, EventArgs e)
+        {
+            silnikSymulacji.minMasa = (int)numericUpDown3.Value;
+        }
+
+        private void numericUpDown4_ValueChanged(object sender, EventArgs e)
+        {
+            silnikSymulacji.maxMasa = (int)numericUpDown4.Value;
         }
     }
 }
