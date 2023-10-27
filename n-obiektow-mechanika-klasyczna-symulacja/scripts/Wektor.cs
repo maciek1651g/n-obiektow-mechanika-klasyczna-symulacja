@@ -15,13 +15,13 @@ namespace n_obiektow_mechanika_klasyczna_symulacja.scripts
 
         public double dlugosc()
         {
-            return Math.Sqrt(this*this);
+            return Math.Sqrt(this * this);
         }
 
         public Wektor normuj()
         {
             double dl = dlugosc();
-            if (dl>0)
+            if (dl > 0)
             {
                 Wektor w = this / dl;
 
@@ -31,7 +31,7 @@ namespace n_obiektow_mechanika_klasyczna_symulacja.scripts
 
                 return w;
             }
-            
+
             return new Wektor();
         }
 

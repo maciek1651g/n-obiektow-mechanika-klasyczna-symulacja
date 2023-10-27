@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace n_obiektow_mechanika_klasyczna_symulacja.scripts
+﻿namespace n_obiektow_mechanika_klasyczna_symulacja.scripts
 {
     internal class PunktMaterialny
     {
@@ -18,7 +12,8 @@ namespace n_obiektow_mechanika_klasyczna_symulacja.scripts
         public Wektor dr;
         public Wektor dv;
 
-        public PunktMaterialny(double masa, Wektor polozenie, Wektor predkosc, double radius = 1){
+        public PunktMaterialny(double masa, Wektor polozenie, Wektor predkosc, double radius = 1)
+        {
             m = masa;
             r = polozenie;
             v = predkosc;
@@ -28,7 +23,7 @@ namespace n_obiektow_mechanika_klasyczna_symulacja.scripts
 
         public void AktualizujPozycje(double dt)
         {
-            dv = (f / m)*dt;
+            dv = (f / m) * dt;
             v = v + dv;
             dr = v * dt;
             r = r + dr;

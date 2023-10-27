@@ -1,19 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
+﻿using n_obiektow_mechanika_klasyczna_symulacja.scripts;
+using System;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using n_obiektow_mechanika_klasyczna_symulacja.scripts;
 
 namespace n_obiektow_mechanika_klasyczna_symulacja
 {
     public partial class Form1 : Form
     {
         private SilnikSymulacji silnikSymulacji;
+        Brush brush = new SolidBrush(Color.White);
 
         public Form1()
         {
@@ -29,6 +24,8 @@ namespace n_obiektow_mechanika_klasyczna_symulacja
             silnikSymulacji.opoznienie = (int)numericUpDown5.Value;
             silnikSymulacji.minMasa = (int)numericUpDown3.Value;
             silnikSymulacji.maxMasa = (int)numericUpDown4.Value;
+            silnikSymulacji.minRadius = (int)numericUpDown8.Value;
+            silnikSymulacji.maxRadius = (int)numericUpDown9.Value;
             silnikSymulacji.Reset();
         }
 
@@ -67,8 +64,6 @@ namespace n_obiektow_mechanika_klasyczna_symulacja
 
         private void rysujKolo(Graphics graphics, double centerX, double centerY, double radius)
         {
-            Brush brush = new SolidBrush(Color.White);
-
             double x = centerX - radius;
             double y = centerY - radius;
 
@@ -130,6 +125,21 @@ namespace n_obiektow_mechanika_klasyczna_symulacja
         private void numericUpDown4_ValueChanged(object sender, EventArgs e)
         {
             silnikSymulacji.maxMasa = (int)numericUpDown4.Value;
+        }
+
+        private void numericUpDown9_ValueChanged(object sender, EventArgs e)
+        {
+            silnikSymulacji.maxRadius = (int)numericUpDown9.Value;
+        }
+
+        private void numericUpDown8_ValueChanged(object sender, EventArgs e)
+        {
+            silnikSymulacji.minRadius = (int)numericUpDown8.Value;
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            pictureBox1.Invalidate();
         }
     }
 }
